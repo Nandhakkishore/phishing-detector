@@ -31,15 +31,19 @@ ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
 VALID_TOKENS = set()
 
 
-def load_feature_columns():
-    sample = pd.read_csv(
-        os.path.join(os.path.dirname(__file__), "..", "dataset", "processed", "train_hybrid_features.csv")
-    )
-    return [c for c in sample.columns if c != "label"]
-
-
-FEATURE_COLUMNS = load_feature_columns()
-
+FEATURE_COLUMNS = [
+    "url_length", "hostname_length", "path_length", "num_dots", "num_hyphens",
+    "num_digits", "num_special_chars", "num_underscores", "num_slashes",
+    "num_question_marks", "num_equals", "num_at_symbols", "has_ip", "has_https",
+    "num_subdomains", "has_port", "is_shortened", "suspicious_word_count",
+    "num_redirect_indicators", "hostname_entropy", "digit_ratio", "special_char_ratio",
+    "LineOfCode", "LargestLineLength", "HasTitle", "DomainTitleMatchScore",
+    "URLTitleMatchScore", "HasFavicon", "Robots", "IsResponsive", "NoOfURLRedirect",
+    "NoOfSelfRedirect", "HasDescription", "NoOfPopup", "NoOfiFrame",
+    "HasExternalFormSubmit", "HasSocialNet", "HasSubmitButton", "HasHiddenFields",
+    "HasPasswordField", "Bank", "Pay", "Crypto", "HasCopyrightInfo", "NoOfImage",
+    "NoOfCSS", "NoOfJS", "NoOfSelfRef", "NoOfEmptyRef", "NoOfExternalRef",
+]
 
 def normalize_url(url: str) -> str:
     url = url.strip()
