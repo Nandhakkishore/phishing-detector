@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0A0E14;
+      --panel: #131922;
+      --line: #232B36;
+      --text: #E8EDF2;
+      --muted: #7C8797;
+      --signal: #2DD4BF;
+      --alert: #FF5470;
+      --warn: #FFB84D;
+    }
+    * { box-sizing: border-box; }
+    body {
+      width: 340px;
+      margin: 0;
+      background: var(--ink);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      padding: 16px;
+    }
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    #target {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text);
+      word-break: break-all;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    #statusPanel {
+      background: var(--panel);
+      border-left: 3px solid var(--muted);
+      border-radius: 4px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s ease;
+    }
+    #statusPanel.legitimate { border-left-color: var(--signal); }
+    #statusPanel.phishing { border-left-color: var(--alert); }
+    #statusPanel.suspicious { border-left-color: var(--warn); }
+    #statusPanel.loading { border-left-color: var(--muted); }
+
+    #status {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    #status.legitimate { color: var(--signal); }
+    #status.phishing { color: var(--alert); }
+    #status.suspicious { color: var(--warn); }
+    #status.loading { color: var(--muted); }
+
+    #confidenceRow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    #confidenceLabel {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      min-width: 34px;
+    }
+    #confidenceBarTrack {
+      flex: 1;
+      height: 4px;
+      background: var(--line);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    #confidenceBarFill {
+      height: 100%;
+      width: 0%;
+      background: var(--muted);
+      transition: width 0.4s ease, background 0.2s ease;
+    }
+    #confidenceBarFill.legitimate { background: var(--signal); }
+    #confidenceBarFill.phishing { background: var(--alert); }
+    #confidenceBarFill.suspicious { background: var(--warn); }
+
+    #reasons {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0;
+    }
+    #reasons li {
+      font-size: 12.5px;
+      color: var(--text);
+      padding: 6px 0;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.4;
+    }
+    #reasons li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      transition: all 0.15s ease;
+    }
+    #scanBtn {
+      background: var(--signal);
+      color: var(--ink);
+      border-color: var(--signal);
+    }
+    #scanBtn:hover { opacity: 0.85; }
+    #reportBtn {
+      background: transparent;
+      color: var(--muted);
+    }
+    #reportBtn:hover { color: var(--text); border-color: var(--muted); }
+    #reportBtn:disabled { opacity: 0.5; cursor: default; }
+  </style>
+</head>
+<body>
+  <div class="eyebrow">Hybrid Phishing Detector</div>
+  <div id="target">—</div>
+
+  <div id="statusPanel" class="loading">
+    <div id="status" class="loading">Scanning</div>
+    <div id="confidenceRow">
+      <span id="confidenceLabel">—</span>
+      <div id="confidenceBarTrack"><div id="confidenceBarFill"></div></div>
+    </div>
+    <ul id="reasons"></ul>
+  </div>
+
+  <button id="scanBtn">Scan this page</button>
+  <button id="reportBtn">Report incorrect classification</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>

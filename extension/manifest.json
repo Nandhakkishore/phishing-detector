@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Hybrid Phishing Detector",
+  "version": "1.0",
+  "description": "Research prototype: detects phishing sites using hybrid URL + content analysis.",
+  "permissions": ["activeTab"],
+  "host_permissions": ["http://127.0.0.1:8000/*"],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
