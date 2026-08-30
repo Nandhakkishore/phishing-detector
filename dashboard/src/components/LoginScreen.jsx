@@ -1,6 +1,6 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = "https://phishing-detector-a3ek.onrender.com";
 
 export default function LoginScreen({ onLogin }) {
   const [password, setPassword] = useState("");
@@ -77,7 +77,7 @@ export default function LoginScreen({ onLogin }) {
             cursor: "pointer", opacity: loading ? 0.6 : 1,
           }}
         >
-          {loading ? "Verifying…" : "Sign In"}
+          {loading ? "Verifying�" : "Sign In"}
         </button>
       </form>
     </div>
