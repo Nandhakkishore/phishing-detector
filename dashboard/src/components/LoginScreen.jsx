@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 
 const API_BASE = "https://phishing-detector-a3ek.onrender.com";
 
@@ -46,7 +46,6 @@ export default function LoginScreen({ onLogin }) {
           Hybrid Phishing Detector
         </div>
         <h1 style={{ margin: "0 0 22px", fontSize: 20, fontWeight: 600 }}>Admin Console</h1>
-
         <label className="mono" style={{ fontSize: 10, color: "var(--muted)", textTransform: "uppercase" }}>
           Password
         </label>
@@ -61,11 +60,9 @@ export default function LoginScreen({ onLogin }) {
             color: "var(--text)", fontSize: 13, outline: "none",
           }}
         />
-
         {error && (
           <div style={{ color: "var(--alert)", fontSize: 12, marginBottom: 14 }}>{error}</div>
         )}
-
         <button
           type="submit"
           disabled={loading}
@@ -77,7 +74,7 @@ export default function LoginScreen({ onLogin }) {
             cursor: "pointer", opacity: loading ? 0.6 : 1,
           }}
         >
-          {loading ? "Verifying�" : "Sign In"}
+          {loading ? "Verifying…" : "Sign In"}
         </button>
       </form>
     </div>
