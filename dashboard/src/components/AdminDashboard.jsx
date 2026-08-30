@@ -5,7 +5,7 @@ import ScanTester from "./ScanTester";
 import ReportsTable from "./ReportsTable";
 import LiveClock from "./LiveClock";
 
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = "https://phishing-detector-a3ek.onrender.com";
 const POLL_INTERVAL_MS = 5000;
 
 export default function AdminDashboard({ onLogout }) {

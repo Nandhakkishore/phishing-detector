@@ -1,5 +1,4 @@
-const API_BASE = "http://127.0.0.1:8000";
-
+const API_BASE = "https://phishing-detector-a3ek.onrender.com";
 const targetEl = document.getElementById("target");
 const panelEl = document.getElementById("statusPanel");
 const statusEl = document.getElementById("status");
